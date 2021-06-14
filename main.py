@@ -1,17 +1,45 @@
-from model.Owner import Owner
-from model.Wallet import Wallet
-from model.StockMarketShares import StockMarketShares
-from model.InvestmentsFunds import InvestmentsFunds
+from decimal import Decimal
 
-print('Welcome to SE-Wallet')
-owner_1 = Owner('Kamil', 'Cecherz', 'kamil.cecherz@gmail.com', '15-02-1986')
-stock_market_shares = StockMarketShares({'amount': '90'})
-investments_funds = InvestmentsFunds({'ABC': '50'})
-wallet_1 = Wallet(owner_1, 3500, stock_market_shares, investments_funds)
+class Person:
+    def __init__(self, name, surname, balance, sms_items = {}):
+        self._name = name
+        self._surname = surname
+        self._balance = balance
+        self._sms_items = sms_items
+
+    @property
+    def balance(self):
+        return self._balance
+
+    @property
+    def sms_items(self):
+        return self._sms_items
+
+    @balance.setter
+    def balance(self, balance):
+        self._balance = balance
+
+    @sms_items.setter
+    def sms_items(self, sms_items):
+        self._sms_items = sms_items
+
+    def add_sms(self, item):
+        self.sms_items.update(item)
+
+    def sum_investment(self):
+        sum = 0
+        for i in self.sms_items.values():
+            sum += Decimal(i)
+        
+        return sum
 
 
-print(owner_1)
-print(wallet_1)
-print(int(stock_market_shares.amount) * 5)
+person = Person("Kamil", "Cecherz", 3000)
+person.balance = 4000
+person.add_sms({"KGHM": "197.55", "ALCOA": "36.95"})
+print(person.balance)
+print(person.sms_items["KGHM"])
+print(person.sum_investment())
+
 
 
