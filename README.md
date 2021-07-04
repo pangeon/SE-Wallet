@@ -3,6 +3,8 @@ Stock Exchange Wallet: stocks, investment funds
 
 # Test programme:
 
+## JavaScript
+
 1. Install [node.js](https://nodejs.org/en/) with [npm](https://www.npmjs.com/)
 2. Install [nodemon](https://www.npmjs.com/package/nodemon) via npm
 
@@ -14,3 +16,5 @@ Stock Exchange Wallet: stocks, investment funds
     ```
     nodemon -q main.js
     ```
+   
+## Python
