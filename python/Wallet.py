@@ -19,29 +19,15 @@ class Wallet:
         return iter(self._investments)
 
     def add_investment(self, name, amount, buy_price, actual_price, currency_price, currency_symbol):
-        global investment
-        if currency_symbol == "PLN":
-            investment = InvestmentPLN(name, amount, buy_price, actual_price, currency_price)
-            investment.purchase_value = amount * buy_price * currency_price
-            investment.share_value = amount * actual_price * currency_price
-        elif currency_symbol == "USD":
-            investment = InvestmentUSD(name, amount, buy_price, actual_price, currency_price)
-            investment.purchase_value = amount * buy_price * currency_price
-            investment.share_value = amount * actual_price * currency_price
-
-        self._investments.append(investment)
+        inv_purchase_and_share_value = Wallet.__init_investment_properties(
+            name, amount, buy_price, actual_price, currency_price, currency_symbol
+        )
+        self._investments.append(inv_purchase_and_share_value)
 
     def insert_investment(self, investment):
-        if isinstance(investment, InvestmentPLN):
-            investment.purchase_value = investment.amount * investment.buy_price * investment.pln_price
-            investment.share_value = investment.amount * investment.actual_price * investment.pln_price
-            self._investments.append(investment)
-        elif isinstance(investment, InvestmentUSD):
-            investment.purchase_value = investment.amount * investment.buy_price * investment.usd_price
-            investment.share_value = investment.amount * investment.actual_price * investment.usd_price
-            self._investments.append(investment)
-        else:
-            raise Exception("Incompatible type")
+        Wallet.__calc_purchase_value(investment)
+        Wallet.__calc_share_value(investment)
+        self._investments.append(investment)
 
     def money_turnover(self):
         return round(self._balance - self._amount_invested, 2)
@@ -77,3 +63,36 @@ class Wallet:
     @amount_invested.setter
     def amount_invested(self, value):
         self._amount_invested = value
+
+    @staticmethod
+    def __calc_purchase_value(investment):
+        if isinstance(investment, InvestmentPLN):
+            investment.purchase_value = investment.amount * investment.buy_price * investment.pln_price
+        elif isinstance(investment, InvestmentUSD):
+            investment.purchase_value = investment.amount * investment.buy_price * investment.usd_price
+
+    @staticmethod
+    def __init_investment_properties(name, amount, buy_price, actual_price, currency_price, currency_symbol):
+        global investment
+        if currency_symbol == "PLN":
+            investment = InvestmentPLN(name, amount, buy_price, actual_price, currency_price)
+            investment.purchase_value = amount * buy_price * currency_price
+            investment.share_value = amount * actual_price * currency_price
+        elif currency_symbol == "USD":
+            investment = InvestmentUSD(name, amount, buy_price, actual_price, currency_price)
+            investment.purchase_value = amount * buy_price * currency_price
+            investment.share_value = amount * actual_price * currency_price
+
+        return investment
+
+    @staticmethod
+    def __calc_share_value(investment):
+        if isinstance(investment, InvestmentPLN):
+            investment.share_value = investment.amount * investment.actual_price * investment.pln_price
+        elif isinstance(investment, InvestmentUSD):
+            investment.share_value = investment.amount * investment.actual_price * investment.usd_price
+
+
+
+
+
