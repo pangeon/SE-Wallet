@@ -2,3 +2,5 @@ javascript/test.js
 node_modules
 .idea/
 __pycache__/
+test.py
+python/venv

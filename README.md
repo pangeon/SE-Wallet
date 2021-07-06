@@ -18,3 +18,20 @@ Stock Exchange Wallet: stocks, investment funds
     ```
    
 ## Python
+
+- Start:
+
+  - Linux
+
+  ```
+  source venv/bin/activate
+  python app.py
+  ```
+
+  - Windows
+
+  ```
+  venv\Scripts\activate
+  python app.py
+  ```
+  
