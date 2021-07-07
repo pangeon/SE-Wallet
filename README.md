@@ -25,13 +25,15 @@ Stock Exchange Wallet: stocks, investment funds
 
   ```
   source venv/bin/activate
-  python app.py
+  export FLASK_APP=hello
+  flask run -h 0.0.0.0
   ```
 
   - Windows
 
   ```
   venv\Scripts\activate
-  python app.py
+  set FLASK_APP=app
+  flask run -h 0.0.0.0
   ```
   

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <table id="summary">
+    <tr>
+      <td>Invested money</td>
+      <td>The value of your stocks</td>
+      <td>Profit on turnover</td>
+    </tr>
+    <tr>
+      {% for property in wallet %}
+        <td>{{ property }} PLN</td>
+      {% endfor %}
+    </tr>
+
+  </table>
+{% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify, render_template
 from python.InvestmentPLN import InvestmentPLN
 from python.InvestmentUSD import InvestmentUSD
 from python.Wallet import Wallet
@@ -35,18 +35,26 @@ app = Flask(__name__)
 
 @app.route("/")
 def wallet_state():
-    return "Invested money: {} PLN" \
-           "<br /> The value of your stocks: {} PLN" \
-           "<br /><br /> Profit on turnover: {} PLN" \
-        .format(wallet()[0], wallet()[1], wallet()[2])
+    return render_template("summary.html", wallet = wallet())
 
 
 @app.route("/investments")
 def investments_list():
-    result = ""
-    for item in investments():
-        result += str(item) + "<br />"
-    return result
+    return render_template("investments.html", investments = investments())
+
+
+@app.route("/login", methods=['POST'])
+def login():
+    if request.form["login"] == "cecherz" and request.form["password"] == "secret":
+        return jsonify("Login success")
+    else:
+        return jsonify("Access denied !")
+
+
+@app.route("/login-form", methods=['GET'])
+def login_form():
+    placeholders = {"username": "Enter your username", "password": "Enter your password"}
+    return render_template('login_form.html', hints=placeholders)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <table>
+    {% for investment in investments %}
+    <tr>
+      <td>{{ investment }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
