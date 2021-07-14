@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" action="{{ url_for('add_investment') }}">
+    <h3>Add Investment</h3>
+    <label for="name">Name:</label><br />
+    <input name="name" type="text" id="name" placeholder="Investment name" /><br />
+    <label for="amount">Amount:</label><br />
+    <input name="amount" type="text" id="amount" placeholder="Number of shares or investment funds" /><br />
+    <label for="buy_price">Buy price:</label><br />
+    <input name="buy_price" type="text" id="buy_price" placeholder="Investment buy price" /><br />
+    <label for="actual_price">Actual price:</label><br />
+    <input name="actual_price" type="text" id="actual_price" placeholder="Investment actual price" /><br />
+    <label for="currency_price">Currency price:</label><br />
+    <input name="currency_price" type="text" id="currency_price" value="1" /><br />
+    <select name="currency_symbol">
+        <option value="PLN">PLN</option>
+        <option value="USD">USD</option>
+    </select>
+
+    <input type="submit" value="Add to wallet">
+</form>
+{% endblock %}

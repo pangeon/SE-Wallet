@@ -33,6 +33,14 @@ class Wallet:
         return round(self._balance - self._amount_invested, 2)
 
     @property
+    def owner(self):
+        return self._owner
+
+    @owner.setter
+    def owner(self, value):
+        self.owner = value
+
+    @property
     def investments(self):
         return self._investments
 
@@ -42,27 +50,19 @@ class Wallet:
 
     @property
     def balance(self):
-        investments = self._investments
-        for investment in investments:
-            self._balance += Decimal(investment.share_value)
-
         return round(self._balance, 2)
 
-    @balance.setter
-    def balance(self, value):
-        self._balance = value
+    # @balance.setter
+    # def balance(self, value):
+    #     self._balance = value
 
     @property
     def amount_invested(self):
-        investments = self._investments
-        for investment in investments:
-            self._amount_invested += Decimal(investment.purchase_value)
-
         return round(self._amount_invested, 2)
 
-    @amount_invested.setter
-    def amount_invested(self, value):
-        self._amount_invested = value
+    # @amount_invested.setter
+    # def amount_invested(self, value):
+    #     self._amount_invested = value
 
     @staticmethod
     def __calc_purchase_value(investment):
@@ -91,6 +91,16 @@ class Wallet:
             investment.share_value = investment.amount * investment.actual_price * investment.pln_price
         elif isinstance(investment, InvestmentUSD):
             investment.share_value = investment.amount * investment.actual_price * investment.usd_price
+
+    def calc_balance(self):
+        investments = self._investments
+        for investment in investments:
+            self._balance += Decimal(investment.share_value)
+
+    def calc_amount_invested(self):
+        investments = self._investments
+        for investment in investments:
+            self._amount_invested += Decimal(investment.purchase_value)
 
 
 

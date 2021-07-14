@@ -30,6 +30,15 @@ if __name__ == '__main__':
     wallet_agnieszka.add_investment("KGHM", 10, 203.69, priceKGHM, pricePLN, "PLN")
     wallet_agnieszka.add_investment("ALCOA INC", 15, 41.54, priceALCOA, priceUSD, "USD")
 
+    wallet_cecherz.calc_amount_invested()
+    wallet_cecherz.calc_balance()
+
+    wallet_agnieszka.calc_amount_invested()
+    wallet_cecherz.calc_balance()
     print_wallet(wallet_cecherz)
+    print_wallet(wallet_cecherz)
+
     print_wallet(wallet_agnieszka)
+    print_wallet(wallet_agnieszka)
+
 
