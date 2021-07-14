@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="post" action="{{ url_for('add_owner') }}">
+<form method="post" action="{{ url_for('post_data.add_owner') }}">
     <h3>Create wallet</h3>
     <label for="owner">Owner:</label><br />
     <input name="owner" type="text" id="owner" placeholder="Enter your name" /><br />

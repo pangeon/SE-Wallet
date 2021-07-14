@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="post" action="{{ url_for('add_investment') }}">
+<form method="post" action="{{ url_for('post_data.add_investment') }}">
     <h3>Add Investment</h3>
     <label for="name">Name:</label><br />
     <input name="name" type="text" id="name" placeholder="Investment name" /><br />

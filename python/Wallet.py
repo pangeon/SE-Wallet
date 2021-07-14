@@ -52,17 +52,9 @@ class Wallet:
     def balance(self):
         return round(self._balance, 2)
 
-    # @balance.setter
-    # def balance(self, value):
-    #     self._balance = value
-
     @property
     def amount_invested(self):
         return round(self._amount_invested, 2)
-
-    # @amount_invested.setter
-    # def amount_invested(self, value):
-    #     self._amount_invested = value
 
     @staticmethod
     def __calc_purchase_value(investment):
@@ -101,8 +93,3 @@ class Wallet:
         investments = self._investments
         for investment in investments:
             self._amount_invested += Decimal(investment.purchase_value)
-
-
-
-
-
