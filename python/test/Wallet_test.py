@@ -38,7 +38,8 @@ class WalletTest(unittest.TestCase):
         wallet_cecherz.calc_balance()
         self.assertEqual(wallet_cecherz.balance - wallet_cecherz.amount_invested, round(Decimal(-386.46), 2))
 
-    def __add_investment_to_wallet(self, wallet_cecherz):
+    @staticmethod
+    def __add_investment_to_wallet(wallet_cecherz):
         KGHM = InvestmentPLN("KGHM", 10, 203.69, priceKGHM, pricePLN)
         ALCOA = InvestmentUSD("ALCOA INC", 15, 41.54, priceALCOA, priceUSD)
         wallet_cecherz.insert_investment(KGHM)

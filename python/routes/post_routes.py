@@ -1,3 +1,4 @@
+import logging
 from decimal import Decimal
 
 from flask import Blueprint, request, render_template, url_for
@@ -34,6 +35,10 @@ def add_investment():
         currency_symbol = str(request.form["currency_symbol"])
 
         wallet.add_investment(name, amount, buy_price, actual_price, currency_price, currency_symbol)
+
+        logging.debug(f"post_routes :: New investment in Wallet: "
+        f"{name, amount, buy_price, actual_price, currency_price, currency_symbol}")
+
         wallet_adapter.update = True
         return redirect(url_for('get_data.investments_list'))
     else:
